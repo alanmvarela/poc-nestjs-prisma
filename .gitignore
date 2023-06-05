@@ -36,3 +36,11 @@ lerna-debug.log*
 
 # Sqlite
 *.sqlite
+*.db
+*.db-journal
+
+# Prisma migrations
+prisma/migrations
+
+# .env file
+.env

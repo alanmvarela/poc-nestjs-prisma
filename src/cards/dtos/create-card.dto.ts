@@ -1,4 +1,4 @@
-import { IsString, IsOptional } from "class-validator";
+import { IsString, IsOptional, IsEnum } from "class-validator";
 import { CardType } from "../cards.enum";
 import { CardCategory } from "../cards.enum";
 
@@ -17,5 +17,6 @@ export class CreateCardDto {
 
     @IsString()
     @IsOptional()
+    @IsEnum(CardCategory)
     category?: CardCategory;
 }

@@ -1,0 +1,58 @@
+### Create a new IssueCard
+POST http://localhost:3000/trello-manager
+content-type: application/json
+
+{
+  "type": "issue",
+  "title": "Test Issue Title",
+  "description": "Test Issue Description"
+}
+
+### Create a new BugCard
+POST http://localhost:3000/trello-manager
+content-type: application/json
+
+{
+  "type": "bug",
+  "description": "Test Bug Description"
+}
+
+### Create a new TaskCard
+POST http://localhost:3000/trello-manager
+content-type: application/json
+
+{
+  "type": "task",
+  "title": "Test Task Title",
+  "category": "test"
+}
+
+
+### List all IssueCards
+GET http://localhost:3000/trello-manager/issue
+
+### List all BugCards
+GET http://localhost:3000/trello-manager/bug
+
+### List all TaskCards
+GET http://localhost:3000/trello-manager/task
+
+
+### Get a single IssueCard
+GET http://localhost:3000/trello-manager/issue/4
+
+
+### Get a single BugCard
+GET http://localhost:3000/trello-manager/bug/1
+
+### Get a single TaskCard
+GET http://localhost:3000/trello-manager/task/1
+
+### Delete a single IssueCard
+DELETE http://localhost:3000/trello-manager/issue/4
+
+### Delete a single BugCard
+DELETE http://localhost:3000/trello-manager/bug/1
+
+### Delete a single TaskCard
+DELETE http://localhost:3000/trello-manager/task/1
