@@ -29,11 +29,11 @@ export class CardsService {
     async createCard(card: CreateCardDto): Promise<IssueCardModel | TaskCardModel | BugCardModel> {
         switch (card.type) {
             case CardType.ISSUE:
-                return await this.createIssueCard(card);
+                return this.createIssueCard(card);
             case CardType.TASK:
-                return await this.createTaskCard(card);
+                return this.createTaskCard(card);
             case CardType.BUG:
-                return await this.createBugCard(card);
+                return this.createBugCard(card);
         };
     }
 
@@ -55,7 +55,7 @@ export class CardsService {
      * @returns {Promise<IssueCardModel | TaskCardModel | BugCardModel>} The card of the given type and id.
      */
     async getCard(type: CardType, id: number): Promise<IssueCardModel | TaskCardModel | BugCardModel> {
-        const card = await this.prismaService[this.formatType(type)].findUnique({ where: { id:Number(id) } });
+        const card = this.prismaService[this.formatType(type)].findUnique({ where: { id:Number(id) } });
         if (!card){
             throw new NotFoundException(`Card with id ${id} not found`);
         };
@@ -98,7 +98,7 @@ export class CardsService {
      */
     async createIssueCard(card: CreateCardDto): Promise<IssueCardModel> {
         this.validateIssueCard(card);
-        const issueCard = this.prismaService.issueCard.create({
+        const issueCard = await this.prismaService.issueCard.create({
             data: {
                 title: card.title,
                 description: card.description,
@@ -127,7 +127,7 @@ export class CardsService {
      */
     async createTaskCard(card: CreateCardDto): Promise<TaskCardModel> {
         this.validateTaskCard(card)
-        const taskCard = this.prismaService.taskCard.create({
+        const taskCard = await this.prismaService.taskCard.create({
             data: {
                 title: card.title,
                 category: card.category,
@@ -158,7 +158,7 @@ export class CardsService {
     async createBugCard(card: CreateCardDto): Promise<BugCardModel> {
         this.validateBugCard(card);
         card.title = 'Bug'+'-'+'RandomWord'+'-'+ Math.floor(Math.random() * 1000);
-        const bugCard = this.prismaService.bugCard.create({
+        const bugCard = await this.prismaService.bugCard.create({
             data: {
                 title: card.title,
                 description: card.description,

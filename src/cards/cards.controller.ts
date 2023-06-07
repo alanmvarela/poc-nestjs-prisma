@@ -12,22 +12,22 @@ export class CardsController {
     
     @Post("")
     async createCard(@Body() body: CreateCardDto) {
-        return await this.cardsService.createCard(body);
+        return this.cardsService.createCard(body);
     }
 
     @Get("/:type")
     async getCards(@ValidateCardType() type: CardType) {
-        return await this.cardsService.getCards(type);
+        return this.cardsService.getCards(type);
     }
 
     @Get("/:type/:id")
     async getCard(@ValidateCardType() type: CardType, @ValidateId() id: number) {
-        return await this.cardsService.getCard(type, id);
+        return this.cardsService.getCard(type, id);
     }
 
     @Delete("/:type/:id")
     async deleteCard(@ValidateCardType() type: CardType, @ValidateId() id: number) {
-        return await this.cardsService.deleteCard(type, id);
+        return this.cardsService.deleteCard(type, id);
     }
 
 }
