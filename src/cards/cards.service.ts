@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCardDto } from './dtos/create-card.dto';
 import { CardType } from './cards.enum';
-import { PrismaService } from 'prisma/prisma.service';
+import { PrismaService } from './../../prisma/prisma.service';
 import { 
     BugCard as BugCardModel,
     IssueCard as IssueCardModel, 
